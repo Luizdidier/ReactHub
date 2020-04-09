@@ -2,10 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { Paper, Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import * as GithubActions from "~/store/modules/github/actions";
+import * as GithubActions from "../../store/modules/github/actions";
 import { Link, Outlet } from "react-router-dom";
-import { Navbar, Titlebar } from "~/components/molecules";
-import { DataTable } from "~/components/organisms";
+import { Navbar, Titlebar } from "../molecules";
+import { Input } from "../atoms";
+import { DataTable } from "../organisms";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function Dashboard() {
       GithubActions.getRepository(
         `stars:>0&page=${
           page + 1
-        }&per_page=${rowsPerPage}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2`
+        }&per_page=${rowsPerPage}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&order=desc`
       )
     );
   }, [dispatch, page, rowsPerPage]);
@@ -37,7 +38,7 @@ export default function Dashboard() {
   useEffect(() => {
     dispatch(
       GithubActions.getUser(
-        `type:user&per_page=${rowsPerPage}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2`
+        `type:user&per_page=${rowsPerPage}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&order=desc`
       )
     );
   }, [dispatch, rowsPerPage]);
@@ -50,8 +51,12 @@ export default function Dashboard() {
           <Grid container justify="center">
             <Grid item style={{ width: "80%" }}>
               <Titlebar variant={"h5"} text={"Usuários"} />
-              <br />
+
+              <Input width={"100%"} />
+
+              <LineSpace />
               <Paper>
+                {/* Todo: Colocar paginação nos usuarios, depois ver como ordenar por mais ativos */}
                 <DataTable
                   data={users.items}
                   page={page}
@@ -70,7 +75,8 @@ export default function Dashboard() {
           <Grid container justify="center">
             <Grid item style={{ width: "80%" }}>
               <Titlebar variant={"h5"} text={"Repositórios"} />
-              <br />
+              <Input width={"100%"} />
+              <LineSpace />
               <Paper>
                 <DataTable
                   data={repository.items}
@@ -84,20 +90,6 @@ export default function Dashboard() {
                 />
               </Paper>
             </Grid>
-            {/* <Grid item>
-              <Paper>
-                <DataTable
-                  data={repository.items}
-                  page={page}
-                  rowsPerPage={rowsPerPage}
-                  handleChangePage={handleChangePage}
-                  handleChangeRowsPerPage={handleChangeRowsPerPage}
-                  totalCount={repository.total_count}
-                  columns={["Nome", "Ultima Atualização"]}
-                  rowValues={["name", "updated_at"]}
-                />
-              </Paper>
-            </Grid> */}
           </Grid>
         </Grid>
       </Grid>
@@ -105,3 +97,8 @@ export default function Dashboard() {
     </>
   );
 }
+
+const LineSpace = styled.div`
+  width: 100%;
+  height: 20px;
+`;

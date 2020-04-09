@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Grid } from "@material-ui/core";
-import { Image, Typography } from "~/components/atoms";
-import logo from "~/logo.svg";
+import { Image, Typography } from "../atoms";
+import logo from "../../logo.svg";
 import styled from "styled-components";
 
 export default function Navbar() {

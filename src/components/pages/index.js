@@ -1,2 +1,2 @@
-export { default as Dashboard } from "~/components/pages/Dashboard";
-export { default as Profile } from "~/components/pages/Profile";
+export { default as Dashboard } from "./Dashboard";
+export { default as Profile } from "./Profile";

@@ -1,1 +1,1 @@
-export { default as DataTable } from "~/components/organisms/DataTable";
+export { default as DataTable } from "./DataTable";

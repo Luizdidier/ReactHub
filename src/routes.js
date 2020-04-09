@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Dashboard, Profile } from "~/components/pages";
+import { Dashboard, Profile } from "./components/pages";
 
 export default function MainRoutes() {
   return (

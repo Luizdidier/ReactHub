@@ -5,7 +5,7 @@ import {
   getRepositorySucesso,
   getRepositoryFalha,
 } from "./actions";
-import { apiGithub } from "~/services/api";
+import { apiGithub } from "../../../services/api";
 
 export function* getUser({ payload }) {
   try {

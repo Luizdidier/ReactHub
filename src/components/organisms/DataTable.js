@@ -1,6 +1,6 @@
 import React from "react";
 import { TableContainer, Table, TableCell } from "@material-ui/core";
-import { DataTableFooter, DataTableBody } from "~/components/molecules";
+import { DataTableFooter, DataTableBody } from "../molecules";
 import styled from "styled-components";
 
 export default function DataTable({

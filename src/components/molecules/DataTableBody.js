@@ -1,9 +1,19 @@
 import React from "react";
 import { TableRow, TableBody, TableHead } from "@material-ui/core";
 import moment from "moment-timezone";
-import { TableCell } from "~/components/atoms";
+import { TableCell, Image } from "../atoms";
 
 export default function DataTableBody({ columns, data, rowValues }) {
+  const valueType = (type, value) => {
+    if (type.includes("_at"))
+      return moment
+        .tz(value, "America/Fortaleza")
+        .format("DD/MM/YYYY HH:mm:ss");
+    else if (type.includes("_url"))
+      return <Image src={value} width={"10%"} borderRadius={"100%"} />;
+    else return value;
+  };
+
   return (
     <>
       <TableHead>
@@ -25,11 +35,7 @@ export default function DataTableBody({ columns, data, rowValues }) {
                 width={"50%"}
               >
                 {/* Todo: Validação de data ser por regex de timestamp */}
-                {value?.includes("_at")
-                  ? moment
-                      .tz(row[value], "America/Fortaleza")
-                      .format("DD/MM/YYYY HH:mm:ss")
-                  : row[value]}
+                {valueType(value, row[value])}
               </TableCell>
             ))}
           </TableRow>

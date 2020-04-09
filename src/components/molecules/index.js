@@ -1,4 +1,4 @@
-export { default as Navbar } from "~/components/molecules/Navbar";
-export { default as DataTableFooter } from "~/components/molecules/DataTableFooter";
-export { default as DataTableBody } from "~/components/molecules/DataTableBody";
-export { default as Titlebar } from "~/components/molecules/Titlebar";
+export { default as Navbar } from "./Navbar";
+export { default as DataTableFooter } from "./DataTableFooter";
+export { default as DataTableBody } from "./DataTableBody";
+export { default as Titlebar } from "./Titlebar";
