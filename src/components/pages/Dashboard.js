@@ -13,32 +13,23 @@ const validationSchemaUser = Yup.object({
   searchUser: Yup.string().required("Required"),
 });
 
-const validationSchemaRepository = Yup.object({
-  searchRepository: Yup.string().required("Required"),
-});
-
 export default function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialValuesUser = {
     searchUser: "",
   };
-  const initialValuesRepository = {
-    searchRepository: "",
-  };
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const { users, repository } = useSelector((state) => state.githubReducer);
+  const [pageRepository, setPageRepository] = useState(0);
+  const [rowsPerPageRepository, setRowsPerPageRepository] = useState(10);
+  const { repository } = useSelector((state) => state.githubReducer);
 
-  useEffect(() => {}, []);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleChangePageRepository = (event, newPage) => {
+    setPageRepository(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+  const handleChangeRowsPerPageRepository = (event) => {
+    setRowsPerPageRepository(parseInt(event.target.value, 10));
+    setPageRepository(0);
   };
 
   // Todo: Reactory do client_id e do client_secret
@@ -47,23 +38,14 @@ export default function Dashboard() {
     dispatch(
       GithubActions.getRepository(
         `stars:>0&page=${
-          page + 1
-        }&per_page=${rowsPerPage}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&order=desc`
+          pageRepository + 1
+        }&per_page=${rowsPerPageRepository}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&order=desc`
       )
     );
-  }, [dispatch, page, rowsPerPage]);
-
-  useEffect(() => {
-    dispatch(
-      GithubActions.getUser(
-        `type:user&per_page=${rowsPerPage}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&order=desc`
-      )
-    );
-  }, [dispatch, rowsPerPage]);
+  }, [dispatch, pageRepository, rowsPerPageRepository]);
 
   const handleSubmit = (e, actions) => {
-    console.log(e);
-    if (e.searchUser) navigate(`/profile/${e.searchUser}`);
+    if (e.searchUser) navigate(`/${e.searchUser}`);
   };
 
   return (
@@ -83,41 +65,21 @@ export default function Dashboard() {
             />
             <LineSpace />
             <Paper>
-              {/* Todo: Colocar paginação nos usuarios, depois ver como ordenar por mais ativos */}
               <DataTable
-                text={"Usuários"}
-                data={users.items}
-                page={page}
-                rowsPerPage={rowsPerPage}
-                handleChangePage={handleChangePage}
-                handleChangeRowsPerPage={handleChangeRowsPerPage}
-                totalCount={users.total_count}
-                columns={["Photo", "Nome", "Ultima Atualização"]}
-                rowValues={["avatar_url", "login", "updated_at"]}
-              />
-            </Paper>
-          </GridItemStyled>
-          <GridItemStyled item xs={12} md={6}>
-            <FormSearch
-              initialValues={initialValuesRepository}
-              handleSubmit={handleSubmit}
-              validationSchema={validationSchemaRepository}
-              name={"searchRepository"}
-              placeholder={"Buscar Repositorios"}
-            />
-
-            <LineSpace />
-            <Paper>
-              <DataTable
-                text={"Repositórios"}
+                text={"Lista Repositórios"}
                 data={repository.items}
-                page={page}
-                rowsPerPage={rowsPerPage}
-                handleChangePage={handleChangePage}
-                handleChangeRowsPerPage={handleChangeRowsPerPage}
+                page={pageRepository}
+                rowsPerPage={rowsPerPageRepository}
+                handleChangePage={handleChangePageRepository}
+                handleChangeRowsPerPage={handleChangeRowsPerPageRepository}
                 totalCount={repository.total_count}
-                columns={["Nome", "Stars", "Ultima Atualização"]}
-                rowValues={["name", "stargazers_count", "updated_at"]}
+                columns={["Nome", "Linguagem", "Stars", "Ultima Atualização"]}
+                rowValues={[
+                  "name",
+                  "language",
+                  "stargazers_count",
+                  "updated_at",
+                ]}
               />
             </Paper>
           </GridItemStyled>
@@ -135,14 +97,4 @@ const LineSpace = styled.div`
 const GridItemStyled = styled(Grid)`
   padding: 34px;
   width: 45%;
-`;
-
-const ButtonNoCss = styled.button`
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
 `;

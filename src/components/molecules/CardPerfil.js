@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, CardContent, Grid, Button } from "@material-ui/core";
 import { Typography, Image } from "../atoms";
 import styled from "styled-components";
@@ -57,7 +57,6 @@ export default function CardPerfil({ profileUser }) {
             </Grid>
           </Grid>
         </Grid>
-        {/* <Typography text={} gutterBottom /> */}
       </CardContent>
     </Card>
   );

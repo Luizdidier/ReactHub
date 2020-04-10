@@ -5,6 +5,7 @@ import { store, persistor } from "./store";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./routes";
+import "@sweetalert2/theme-dark/dark.scss";
 
 function App() {
   return (

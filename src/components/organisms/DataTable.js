@@ -13,6 +13,7 @@ export default function DataTable({
   columns,
   rowValues,
   text,
+  noPaginate,
 }) {
   return (
     <>
@@ -22,13 +23,15 @@ export default function DataTable({
           <DataTableBody columns={columns} data={data} rowValues={rowValues} />
         </Table>
       </TableContainerStyled>
-      <DataTableFooter
-        totalCount={totalCount}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        handleChangePage={handleChangePage}
-        handleChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+      {!noPaginate && (
+        <DataTableFooter
+          totalCount={totalCount}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      )}
     </>
   );
 }

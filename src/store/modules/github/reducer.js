@@ -5,6 +5,10 @@ const INITIAL_STATE = {
   users: [],
   repository: [],
   profileUser: [],
+  usersError: [],
+  repositoryError: [],
+  profileUserError: [],
+  tabIndex: 0,
 };
 
 export default function githubReducer(state = INITIAL_STATE, action) {
@@ -21,7 +25,7 @@ export default function githubReducer(state = INITIAL_STATE, action) {
       }
       case "@githubReducer/GET_USER_FALHA": {
         draft.loading = false;
-        draft.users = action.payload;
+        draft.usersError = action.payload;
         break;
       }
       case "@githubReducer/GET_SINGLE_USER": {
@@ -31,6 +35,11 @@ export default function githubReducer(state = INITIAL_STATE, action) {
       case "@githubReducer/GET_SINGLE_USER_SUCESSO": {
         draft.loading = false;
         draft.profileUser = action.payload;
+        break;
+      }
+      case "@githubReducer/GET_SINGLE_USER_FALHA": {
+        draft.loading = false;
+        draft.profileUserError = action.payload;
         break;
       }
       case "@githubReducer/GET_REPOSITORY": {
@@ -44,7 +53,20 @@ export default function githubReducer(state = INITIAL_STATE, action) {
       }
       case "@githubReducer/GET_REPOSITORY_FALHA": {
         draft.loading = false;
-        draft.repository = action.payload;
+        draft.repositoryError = action.payload;
+        break;
+      }
+      case "@githubReducer/SET_VALUE_TABS": {
+        draft.loading = false;
+        draft.tabIndex = action.payload;
+        break;
+      }
+      case "@githubReducer/CLEAR": {
+        draft.profileUser = [];
+        draft.loading = false;
+        draft.usersError = [];
+        draft.repositoryError = [];
+        draft.profileUserError = [];
         break;
       }
       default:

@@ -16,16 +16,22 @@ export function getUserFalha(err) {
     payload: err,
   };
 }
+export function getSingleUser(payload) {
+  return {
+    type: "@githubReducer/GET_SINGLE_USER",
+    payload: payload,
+  };
+}
 export function getSingleUserSucesso(response) {
   return {
     type: "@githubReducer/GET_SINGLE_USER_SUCESSO",
     payload: response,
   };
 }
-export function getSingleUser(payload) {
+export function getSingleUserFalha(err) {
   return {
-    type: "@githubReducer/GET_SINGLE_USER",
-    payload: payload,
+    type: "@githubReducer/GET_SINGLE_USER_FALHA",
+    payload: err,
   };
 }
 export function getRepository(params) {
@@ -44,5 +50,10 @@ export function getRepositoryFalha(err) {
   return {
     type: "@githubReducer/GET_REPOSITORY_FALHA",
     payload: err,
+  };
+}
+export function clear() {
+  return {
+    type: "@githubReducer/CLEAR",
   };
 }

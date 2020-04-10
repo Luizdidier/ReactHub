@@ -22,7 +22,7 @@ export default function DataTableFooter({
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[10, 20, 30]}
+                rowsPerPageOptions={[5, 10, 20, 30]}
                 colSpan={3}
                 count={totalCount || 0}
                 rowsPerPage={rowsPerPage}

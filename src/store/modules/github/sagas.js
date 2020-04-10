@@ -5,6 +5,7 @@ import {
   getRepositorySucesso,
   getRepositoryFalha,
   getSingleUserSucesso,
+  getSingleUserFalha,
 } from "./actions";
 import { apiGithub } from "../../../services/api";
 
@@ -22,7 +23,7 @@ export function* getSingleUser({ payload }) {
     const response = yield call(apiGithub.get, `/users/${payload}`);
     yield put(getSingleUserSucesso(response.data));
   } catch (err) {
-    yield put(getUserFalha(err));
+    yield put(getSingleUserFalha(err));
   }
 }
 

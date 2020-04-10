@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { TableCell as CellTable } from "@material-ui/core";
 import styled from "styled-components";
 
