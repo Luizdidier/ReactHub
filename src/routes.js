@@ -6,7 +6,7 @@ export default function MainRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:username" element={<Profile />} />
       </Route>
 
       <Route path="*" element={<h1>Not Found!</h1>} />

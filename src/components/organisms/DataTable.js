@@ -1,6 +1,6 @@
 import React from "react";
-import { TableContainer, Table, TableCell } from "@material-ui/core";
-import { DataTableFooter, DataTableBody } from "../molecules";
+import { TableContainer, Table } from "@material-ui/core";
+import { DataTableFooter, DataTableBody, ToolbarTable } from "../molecules";
 import styled from "styled-components";
 
 export default function DataTable({
@@ -12,9 +12,11 @@ export default function DataTable({
   handleChangeRowsPerPage,
   columns,
   rowValues,
+  text,
 }) {
   return (
     <>
+      <ToolbarTable text={text} />
       <TableContainerStyled>
         <Table stickyHeader>
           <DataTableBody columns={columns} data={data} rowValues={rowValues} />
@@ -32,9 +34,5 @@ export default function DataTable({
 }
 
 const TableContainerStyled = styled(TableContainer)`
-  max-height: 585px;
-`;
-
-const TableCellStyled = styled(TableCell)`
-  width: 50%;
+  max-height: 400px;
 `;

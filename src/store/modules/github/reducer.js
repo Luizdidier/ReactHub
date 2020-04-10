@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   loading: false,
   users: [],
   repository: [],
+  profileUser: [],
 };
 
 export default function githubReducer(state = INITIAL_STATE, action) {
@@ -21,6 +22,15 @@ export default function githubReducer(state = INITIAL_STATE, action) {
       case "@githubReducer/GET_USER_FALHA": {
         draft.loading = false;
         draft.users = action.payload;
+        break;
+      }
+      case "@githubReducer/GET_SINGLE_USER": {
+        draft.loading = true;
+        break;
+      }
+      case "@githubReducer/GET_SINGLE_USER_SUCESSO": {
+        draft.loading = false;
+        draft.profileUser = action.payload;
         break;
       }
       case "@githubReducer/GET_REPOSITORY": {

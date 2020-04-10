@@ -10,7 +10,7 @@ export default function DataTableBody({ columns, data, rowValues }) {
         .tz(value, "America/Fortaleza")
         .format("DD/MM/YYYY HH:mm:ss");
     else if (type.includes("_url"))
-      return <Image src={value} width={"10%"} borderRadius={"100%"} />;
+      return <Image src={value} width={"70px"} borderRadius={"100%"} />;
     else return value;
   };
 
@@ -32,7 +32,7 @@ export default function DataTableBody({ columns, data, rowValues }) {
               <TableCell
                 component="th"
                 key={Math.random() + index}
-                width={"50%"}
+                width={"20%"}
               >
                 {/* Todo: Validação de data ser por regex de timestamp */}
                 {valueType(value, row[value])}

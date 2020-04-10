@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: "site",
       storage,
-      whitelist: [],
+      whitelist: ["githubReducer"],
     },
     reducers
   );

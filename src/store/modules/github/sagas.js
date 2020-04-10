@@ -4,6 +4,7 @@ import {
   getUserFalha,
   getRepositorySucesso,
   getRepositoryFalha,
+  getSingleUserSucesso,
 } from "./actions";
 import { apiGithub } from "../../../services/api";
 
@@ -11,6 +12,15 @@ export function* getUser({ payload }) {
   try {
     const response = yield call(apiGithub.get, `/search/users?q=${payload}`);
     yield put(getUserSucesso(response.data));
+  } catch (err) {
+    yield put(getUserFalha(err));
+  }
+}
+
+export function* getSingleUser({ payload }) {
+  try {
+    const response = yield call(apiGithub.get, `/users/${payload}`);
+    yield put(getSingleUserSucesso(response.data));
   } catch (err) {
     yield put(getUserFalha(err));
   }
@@ -30,5 +40,6 @@ export function* getRepository({ payload }) {
 
 export default all([
   takeLatest("@githubReducer/GET_USER", getUser),
+  takeLatest("@githubReducer/GET_SINGLE_USER", getSingleUser),
   takeLatest("@githubReducer/GET_REPOSITORY", getRepository),
 ]);

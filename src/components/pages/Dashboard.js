@@ -1,18 +1,36 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Paper, Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as GithubActions from "../../store/modules/github/actions";
-import { Link, Outlet } from "react-router-dom";
-import { Navbar, Titlebar } from "../molecules";
-import { Input } from "../atoms";
+import { Outlet } from "react-router-dom";
+import { Navbar, FormSearch } from "../molecules";
 import { DataTable } from "../organisms";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+
+const validationSchemaUser = Yup.object({
+  searchUser: Yup.string().required("Required"),
+});
+
+const validationSchemaRepository = Yup.object({
+  searchRepository: Yup.string().required("Required"),
+});
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const initialValuesUser = {
+    searchUser: "",
+  };
+  const initialValuesRepository = {
+    searchRepository: "",
+  };
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const { users, repository } = useSelector((state) => state.githubReducer);
+
+  useEffect(() => {}, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -43,57 +61,68 @@ export default function Dashboard() {
     );
   }, [dispatch, rowsPerPage]);
 
+  const handleSubmit = (e, actions) => {
+    console.log(e);
+    if (e.searchUser) navigate(`/profile/${e.searchUser}`);
+  };
+
   return (
     <>
       <Navbar />
+      <LineSpace />
+      <Outlet />
       <Grid container>
-        <Grid item xs={12}>
-          <Grid container justify="center">
-            <Grid item style={{ width: "80%" }}>
-              <Titlebar variant={"h5"} text={"Usuários"} />
+        <Grid container justify="center">
+          <GridItemStyled item xs={12} md={6}>
+            <FormSearch
+              initialValues={initialValuesUser}
+              handleSubmit={handleSubmit}
+              name={"searchUser"}
+              placeholder={"Buscar Usuários"}
+              validationSchema={validationSchemaUser}
+            />
+            <LineSpace />
+            <Paper>
+              {/* Todo: Colocar paginação nos usuarios, depois ver como ordenar por mais ativos */}
+              <DataTable
+                text={"Usuários"}
+                data={users.items}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                handleChangePage={handleChangePage}
+                handleChangeRowsPerPage={handleChangeRowsPerPage}
+                totalCount={users.total_count}
+                columns={["Photo", "Nome", "Ultima Atualização"]}
+                rowValues={["avatar_url", "login", "updated_at"]}
+              />
+            </Paper>
+          </GridItemStyled>
+          <GridItemStyled item xs={12} md={6}>
+            <FormSearch
+              initialValues={initialValuesRepository}
+              handleSubmit={handleSubmit}
+              validationSchema={validationSchemaRepository}
+              name={"searchRepository"}
+              placeholder={"Buscar Repositorios"}
+            />
 
-              <Input width={"100%"} />
-
-              <LineSpace />
-              <Paper>
-                {/* Todo: Colocar paginação nos usuarios, depois ver como ordenar por mais ativos */}
-                <DataTable
-                  data={users.items}
-                  page={page}
-                  rowsPerPage={rowsPerPage}
-                  handleChangePage={handleChangePage}
-                  handleChangeRowsPerPage={handleChangeRowsPerPage}
-                  totalCount={users.total_count}
-                  columns={["Photo", "Nome", "Ultima Atualização"]}
-                  rowValues={["avatar_url", "login", "updated_at"]}
-                />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container justify="center">
-            <Grid item style={{ width: "80%" }}>
-              <Titlebar variant={"h5"} text={"Repositórios"} />
-              <Input width={"100%"} />
-              <LineSpace />
-              <Paper>
-                <DataTable
-                  data={repository.items}
-                  page={page}
-                  rowsPerPage={rowsPerPage}
-                  handleChangePage={handleChangePage}
-                  handleChangeRowsPerPage={handleChangeRowsPerPage}
-                  totalCount={repository.total_count}
-                  columns={["Nome", "Ultima Atualização"]}
-                  rowValues={["name", "updated_at"]}
-                />
-              </Paper>
-            </Grid>
-          </Grid>
+            <LineSpace />
+            <Paper>
+              <DataTable
+                text={"Repositórios"}
+                data={repository.items}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                handleChangePage={handleChangePage}
+                handleChangeRowsPerPage={handleChangeRowsPerPage}
+                totalCount={repository.total_count}
+                columns={["Nome", "Stars", "Ultima Atualização"]}
+                rowValues={["name", "stargazers_count", "updated_at"]}
+              />
+            </Paper>
+          </GridItemStyled>
         </Grid>
       </Grid>
-      <Outlet />
     </>
   );
 }
@@ -101,4 +130,19 @@ export default function Dashboard() {
 const LineSpace = styled.div`
   width: 100%;
   height: 20px;
+`;
+
+const GridItemStyled = styled(Grid)`
+  padding: 34px;
+  width: 45%;
+`;
+
+const ButtonNoCss = styled.button`
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 `;

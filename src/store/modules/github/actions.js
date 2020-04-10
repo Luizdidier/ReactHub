@@ -16,7 +16,18 @@ export function getUserFalha(err) {
     payload: err,
   };
 }
-
+export function getSingleUserSucesso(response) {
+  return {
+    type: "@githubReducer/GET_SINGLE_USER_SUCESSO",
+    payload: response,
+  };
+}
+export function getSingleUser(payload) {
+  return {
+    type: "@githubReducer/GET_SINGLE_USER",
+    payload: payload,
+  };
+}
 export function getRepository(params) {
   return {
     type: "@githubReducer/GET_REPOSITORY",

@@ -15,7 +15,7 @@ export default function Navbar() {
             alignItems={"center"}
             alignContent={"center"}
           >
-            <Image src={logo} width={"4%"} />
+            <Image src={logo} width={"60px"} effect={"react-symbol-rotate"} />
             <Typography variant="h6" text={"ReactHub"} />
           </Grid>
         </Toolbar>
