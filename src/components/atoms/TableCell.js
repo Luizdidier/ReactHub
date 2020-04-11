@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { TableCell as CellTable } from "@material-ui/core";
 import styled from "styled-components";
 
-export default function TableCell({ children, width, component }) {
+const TableCell = ({ children, width, component }) => {
   return (
     <>
       <CellTableStyled
@@ -14,8 +14,10 @@ export default function TableCell({ children, width, component }) {
       </CellTableStyled>
     </>
   );
-}
+};
 
 const CellTableStyled = styled(CellTable)`
   ${(props) => (props.width ? `width: ${props.width}` : "")}
 `;
+
+export default memo(TableCell);

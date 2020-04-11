@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useMemo } from "react";
+import React, { useEffect, memo } from "react";
 import styled from "styled-components";
 import { Grid } from "@material-ui/core";
 import { useParams } from "react-router-dom";

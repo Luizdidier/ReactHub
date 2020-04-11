@@ -4,7 +4,7 @@ import * as GithubActions from "../../store/modules/github/actions";
 import { TableCell } from "../atoms";
 import { useDispatch } from "react-redux";
 
-const DataTableHead = ({ columns, data, rowValues, page, rowsPerPage }) => {
+const DataTableHead = ({ columns, page, rowsPerPage }) => {
   const [order, setOrder] = useState("desc");
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);

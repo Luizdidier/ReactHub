@@ -9,8 +9,8 @@ import { DataTable } from "../organisms";
 
 export default function Ranking() {
   const dispatch = useDispatch();
-  const [pageUser, setPageUser] = useState(0);
-  const [rowsPerPageUser, setRowsPerPageUser] = useState(5);
+  const [pageUser] = useState(0);
+  const [rowsPerPageUser] = useState(5);
   const { users } = useSelector((state) => state.githubReducer);
 
   // Todo: Reactory do client_id e do client_secret

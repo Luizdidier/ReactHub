@@ -61,11 +61,6 @@ const AppBarStyled = styled(AppBar)`
   background: black !important;
 `;
 
-const LineSpace = styled.div`
-  height: 10px;
-  width: 100%;
-`;
-
 const PaperStyled = styled(Paper)`
   display: flex;
   justify-content: center;

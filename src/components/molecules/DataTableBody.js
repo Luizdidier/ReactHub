@@ -1,11 +1,11 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { TableRow, TableBody, IconButton } from "@material-ui/core";
 import moment from "moment-timezone";
 import { TableCell, Image, RankingCell } from "../atoms";
 import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const DataTableBody = ({ columns, data, rowValues }) => {
+const DataTableBody = ({ data, rowValues }) => {
   const navigate = useNavigate();
   const valueType = (type, value, login, index, row) => {
     const regexTime = /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)Z$/g;

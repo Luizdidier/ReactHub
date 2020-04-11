@@ -57,7 +57,6 @@ export default function githubReducer(state = INITIAL_STATE, action) {
         break;
       }
       case "@githubReducer/SET_VALUE_TABS": {
-        draft.loading = false;
         draft.tabIndex = action.payload;
         break;
       }

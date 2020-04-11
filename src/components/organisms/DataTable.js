@@ -29,17 +29,10 @@ export default function DataTable({
           <DataTableHead
             columns={columns}
             data={data}
-            rowValues={rowValues}
             rowsPerPage={rowsPerPage}
             page={page}
-            align={align}
           />
-          <DataTableBody
-            columns={columns}
-            data={data}
-            rowValues={rowValues}
-            align={align}
-          />
+          <DataTableBody data={data} rowValues={rowValues} />
         </Table>
       </TableContainerStyled>
       {!noPaginate && (

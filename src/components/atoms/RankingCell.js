@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaCrown } from "react-icons/fa";
 import styled from "styled-components";
 // import { Container } from './styles';
