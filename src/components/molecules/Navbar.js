@@ -16,7 +16,7 @@ export default function Navbar() {
     await dispatch(UtilsActions.setValueTabs(newValue));
     if (newValue === 0) navigate("/");
     else if (newValue === 1) navigate("/dashboard/ranking");
-    else if (newValue === 2) navigate("/");
+    else if (newValue === 2) navigate("/search/log");
   };
 
   useEffect(() => {
@@ -34,10 +34,8 @@ export default function Navbar() {
             alignContent={"center"}
             spacing={3}
           >
-            <Grid container direction="row">
-              <Image src={logo} width={"60px"} effect={"react-symbol-rotate"} />
-              <Typography variant="h6" text={"ReactHub"} margin={"10px"} />
-            </Grid>
+            <Image src={logo} width={"60px"} effect={"react-symbol-rotate"} />
+            <Typography variant="h6" text={"ReactHub"} margin={"10px"} />
           </Grid>
         </Toolbar>
       </AppBarStyled>

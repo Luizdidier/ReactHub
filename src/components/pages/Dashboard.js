@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Paper, Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as GithubActions from "../../store/modules/github/actions";
+import * as UtilsActions from "../../store/modules/utils/actions";
 import { Outlet } from "react-router-dom";
 import { Navbar, FormSearch } from "../molecules";
 import { DataTable } from "../organisms";
@@ -45,7 +46,10 @@ export default function Dashboard() {
   }, [dispatch, pageRepository, rowsPerPageRepository]);
 
   const handleSubmit = (e, actions) => {
-    if (e.searchUser) navigate(`/${e.searchUser}`);
+    if (e.searchUser) {
+      dispatch(UtilsActions.setSearchLog(e.searchUser));
+      navigate(`/${e.searchUser}`);
+    }
   };
 
   return (
@@ -73,7 +77,12 @@ export default function Dashboard() {
                 handleChangePage={handleChangePageRepository}
                 handleChangeRowsPerPage={handleChangeRowsPerPageRepository}
                 totalCount={repository.total_count}
-                columns={["Nome", "Linguagem", "Stars", "Ultima Atualização"]}
+                columns={[
+                  "Nome",
+                  "Linguagem",
+                  "Stars",
+                  { sort: "Ultima Atualização" },
+                ]}
                 rowValues={[
                   "name",
                   "language",

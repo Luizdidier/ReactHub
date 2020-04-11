@@ -22,7 +22,7 @@ export default function FormSearch({
       >
         <FormikForm>
           <Grid container justify="center">
-            <Field name={name} as="input" style={{ width: "94%" }}>
+            <Field name={name} style={{ width: "94%" }}>
               {({ field, form }) => (
                 <Input
                   {...field}

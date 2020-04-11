@@ -1,6 +1,11 @@
 import React from "react";
 import { TableContainer, Table } from "@material-ui/core";
-import { DataTableFooter, DataTableBody, ToolbarTable } from "../molecules";
+import {
+  DataTableFooter,
+  DataTableBody,
+  ToolbarTable,
+  DataTableHead,
+} from "../molecules";
 import styled from "styled-components";
 
 export default function DataTable({
@@ -14,13 +19,27 @@ export default function DataTable({
   rowValues,
   text,
   noPaginate,
+  align,
 }) {
   return (
     <>
       <ToolbarTable text={text} />
       <TableContainerStyled>
         <Table stickyHeader>
-          <DataTableBody columns={columns} data={data} rowValues={rowValues} />
+          <DataTableHead
+            columns={columns}
+            data={data}
+            rowValues={rowValues}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            align={align}
+          />
+          <DataTableBody
+            columns={columns}
+            data={data}
+            rowValues={rowValues}
+            align={align}
+          />
         </Table>
       </TableContainerStyled>
       {!noPaginate && (

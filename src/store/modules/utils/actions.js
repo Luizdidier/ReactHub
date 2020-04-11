@@ -4,3 +4,10 @@ export function setValueTabs(value) {
     payload: value,
   };
 }
+
+export function setSearchLog(value) {
+  return {
+    type: "@utilsReducer/SET_SEARCH_LOG",
+    payload: value,
+  };
+}
