@@ -9,6 +9,7 @@ import { Navbar, FormSearch } from "../molecules";
 import { DataTable } from "../organisms";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { getGithubReducer } from "../../services/selectors";
 
 const validationSchemaUser = Yup.object({
   searchUser: Yup.string().required("Required"),
@@ -22,7 +23,7 @@ export default function Dashboard() {
   };
   const [pageRepository, setPageRepository] = useState(0);
   const [rowsPerPageRepository, setRowsPerPageRepository] = useState(10);
-  const { repository } = useSelector((state) => state.githubReducer);
+  const { repository } = useSelector(getGithubReducer);
 
   const handleChangePageRepository = (event, newPage) => {
     setPageRepository(newPage);

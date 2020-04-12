@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Paper, Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as GithubActions from "../../store/modules/github/actions";
+import { getGithubReducer } from "../../services/selectors";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../molecules";
 import { DataTable } from "../organisms";
@@ -11,7 +12,7 @@ export default function Ranking() {
   const dispatch = useDispatch();
   const [pageUser] = useState(0);
   const [rowsPerPageUser] = useState(5);
-  const { users } = useSelector((state) => state.githubReducer);
+  const { users } = useSelector(getGithubReducer);
 
   // Todo: Reactory do client_id e do client_secret
 

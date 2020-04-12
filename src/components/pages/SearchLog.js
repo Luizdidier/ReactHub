@@ -4,9 +4,10 @@ import { Paper, Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { Navbar } from "../molecules";
 import { DataTable } from "../organisms";
+import { getUtilsReducer } from "../../services/selectors";
 
 export default function SearchLog() {
-  const { searchLog } = useSelector((state) => state.utilsReducer);
+  const { searchLog } = useSelector(getUtilsReducer);
 
   return (
     <>

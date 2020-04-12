@@ -38,13 +38,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --coverageDirectory=output/coverage/jest",
+    "test": "react-scripts test --coverage --coverageDirectory=coverage/jest",
     "eject": "react-scripts eject"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
+      "!<rootDir>/src/routes.js",
+      "!<rootDir>/src/store/**/*",
+      "!<rootDir>/src/services/*.js",
       "!<rootDir>/path/to/dir/"
     ],
     "coverageReporters": [

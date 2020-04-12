@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { CardPerfil } from "../molecules";
 import { useDispatch, useSelector } from "react-redux";
+import { getGithubReducer } from "../../services/selectors";
 import * as GithubActions from "../../store/modules/github/actions";
 import { useNavigate } from "react-router-dom";
 import _ from "lodash";
@@ -13,9 +14,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const { username } = useParams();
   const dispatch = useDispatch();
-  const { profileUser, profileUserError } = useSelector(
-    (state) => state.githubReducer
-  );
+  const { profileUser, profileUserError } = useSelector(getGithubReducer);
 
   useEffect(() => {
     if (!_.isEmpty(profileUserError)) {
