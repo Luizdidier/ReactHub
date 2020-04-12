@@ -41,7 +41,9 @@ export default function Dashboard() {
       GithubActions.getRepository(
         `stars:>0&page=${
           pageRepository + 1
-        }&per_page=${rowsPerPageRepository}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&order=desc`
+        }&per_page=${rowsPerPageRepository}&client_id=${
+          process.env.REACT_APP_CLIENT_ID
+        }&client_secret=${process.env.REACT_APP_CLIENT_SECRET}&order=desc`
       )
     );
   }, [dispatch, pageRepository, rowsPerPageRepository]);

@@ -1,6 +1,7 @@
 {
   "name": "react-hub",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.9",
@@ -38,7 +39,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --coverageDirectory=coverage/jest",
+    "test": "react-scripts test --coverage --coverageDirectory=output/coverage/jest",
     "eject": "react-scripts eject"
   },
   "jest": {

@@ -17,8 +17,10 @@ jest.mock("../../services/selectors");
 
 describe("Dashboard.js", () => {
   it("Test render Dashboard", () => {
-    getGithubReducer.mockReturnValue(false);
+    getGithubReducer.mockReturnValue({
+      repository: { items: [{}] },
+    });
     const wrapper = shallow(<Dashboard />);
-    expect(wrapper.matchesElement(DataTable)).toBe(true);
+    expect(wrapper.matchesElement(DataTable)).toBe(false);
   });
 });

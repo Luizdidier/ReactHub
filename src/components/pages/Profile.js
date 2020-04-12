@@ -43,7 +43,7 @@ const Profile = () => {
     async function getSingleUser() {
       dispatch(
         GithubActions.getSingleUser(
-          `${username}?q=client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2`
+          `${username}?q=client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
         )
       );
     }

@@ -4,7 +4,6 @@ import { Paper, Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as GithubActions from "../../store/modules/github/actions";
 import { getGithubReducer } from "../../services/selectors";
-import { Outlet } from "react-router-dom";
 import { Navbar } from "../molecules";
 import { DataTable } from "../organisms";
 
@@ -19,9 +18,11 @@ export default function Ranking() {
   useEffect(() => {
     dispatch(
       GithubActions.getUser(
-        `type:user&page=${
-          pageUser + 1
-        }&per_page=${rowsPerPageUser}&client_id=61aaa5c3f1e95c95abb5&client_secret=0e910de58a541232ef4ece41396689bb973f81e2&sort=followers&order=desc`
+        `type:user&page=${pageUser + 1}&per_page=${rowsPerPageUser}&client_id=${
+          process.env.REACT_APP_CLIENT_ID
+        }&client_secret=${
+          process.env.REACT_APP_CLIENT_SECRET
+        }&sort=followers&order=desc`
       )
     );
   }, [dispatch, pageUser, rowsPerPageUser]);
@@ -29,7 +30,6 @@ export default function Ranking() {
   return (
     <>
       <Navbar />
-      <Outlet />
       <Grid container>
         <Grid container justify="center">
           <GridItemStyled item xs={12} md={6}>

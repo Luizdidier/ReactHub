@@ -15,7 +15,7 @@ jest.mock("../../services/selectors");
 
 describe("Ranking.js", () => {
   it("Test render Ranking", () => {
-    getGithubReducer.mockReturnValue();
+    getGithubReducer.mockReturnValue(true);
     shallow(<Ranking />);
   });
 });
